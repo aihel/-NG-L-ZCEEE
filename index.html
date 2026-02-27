@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=yes">
-    <title>roupProject(MiniPekka,Nehx,SansiAsaf)</title>
+    <title>GroupProject(MiniPekka,Nehx,SansiAsaf)</title>
     <style>
         * {
             margin: 0;
@@ -201,7 +201,7 @@
             margin-left: 70px;
         }
 
-        /* ========== 1. SAYFA - BÜYÜK GÖRSELLER ========== */
+        /* ========== 1. SAYFA - ATATÜRK DİK BÜYÜK, BAYRAK YATAY BÜYÜK ========== */
         .cover-page {
             min-height: calc(100vh - 120px);
             display: flex;
@@ -213,19 +213,26 @@
 
         .cover-gif {
             width: 90%;
-            max-width: 1000px;
-            height: 500px;
-            border: 6px solid #333;
+            max-width: 900px;
             overflow: hidden;
             background: #111;
             box-shadow: 0 20px 40px rgba(0,0,0,0.5);
+        }
+
+        .cover-gif:first-child {
+            height: 600px;
+        }
+
+        .cover-gif:last-child {
+            height: 400px;
+            width: 90%;
+            max-width: 1200px;
         }
 
         .cover-gif img {
             width: 100%;
             height: 100%;
             object-fit: cover;
-            /* SİYAH BEYAZ FİLTRESİ KALDIRILDI - RENKLİ GÖRÜNECEK */
         }
 
         .cover-title {
@@ -237,7 +244,7 @@
             text-shadow: 3px 3px 0 #333;
         }
 
-        /* ========== HABER SAYFALARI ========== */
+        /* ========== HABER SAYFALARI - YATAY BÜYÜK GÖRSELLER ========== */
         .news-single {
             display: flex;
             flex-direction: column;
@@ -285,7 +292,6 @@
             width: 100%;
             height: 100%;
             object-fit: cover;
-            /* SİYAH BEYAZ FİLTRESİ KALDIRILDI - RENKLİ GÖRÜNECEK */
         }
 
         .news-text {
@@ -295,7 +301,7 @@
             text-align: justify;
         }
 
-        /* ========== SON SAYFA - ANİMASYONLU ========== */
+        /* ========== SON SAYFA - BÜYÜK YATAY 88.jpg ========== */
         .last-page {
             min-height: calc(100vh - 120px);
             display: flex;
@@ -307,12 +313,11 @@
         }
 
         .last-page img {
-            width: 600px;
-            height: 600px;
+            width: 900px;
+            height: 500px;
             border: 8px solid #333;
             object-fit: cover;
             box-shadow: 0 30px 60px rgba(0,0,0,0.5);
-            /* SİYAH BEYAZ FİLTRESİ KALDIRILDI - RENKLİ GÖRÜNECEK */
             animation: float 3s ease-in-out infinite;
         }
 
@@ -526,9 +531,6 @@
 
         @media (orientation: landscape) {
             .news-image {
-                height: 550px;
-            }
-            .cover-gif {
                 height: 550px;
             }
         }
@@ -774,13 +776,13 @@
             
             if (sayfa.kapak) {
                 html = `<div class="cover-page">
-                    <div class="cover-gif"><img src="assets/ataturk.gif" alt="Atatürk" onerror="this.src='data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMTAwMCIgaGVpZ2h0PSI1MDAiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+PHJlY3Qgd2lkdGg9IjEwMDAiIGhlaWdodD0iNTAwIiBmaWxsPSIjZTMwYTE3Ii8+PHRleHQgeD0iNTAlIiB5PSI1MCUiIGZvbnQtc2l6ZT0iNzAiIHRleHQtYW5jaG9yPSJtaWRkbGUiIGZpbGw9IndoaXRlIj5BVEFUw5xSSzwvdGV4dD48L3N2Zz4='"></div>
-                    <div class="cover-gif"><img src="assets/turk_bayragi.gif" alt="Bayrak" onerror="this.src='data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMTAwMCIgaGVpZ2h0PSI1MDAiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+PHJlY3Qgd2lkdGg9IjEwMDAiIGhlaWdodD0iNTAwIiBmaWxsPSIjZTMwYTE3Ii8+PGNpcmNsZSBjeD0iNTAwIiBjeT0iMjUwIiByPSIxNTAiIGZpbGw9IndoaXRlIi8+PC9zdmc+'"></div>
+                    <div class="cover-gif"><img src="assets/ataturk.gif" alt="Atatürk" onerror="this.src='data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iOTAwIiBoZWlnaHQ9IjYwMCIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj48cmVjdCB3aWR0aD0iOTAwIiBoZWlnaHQ9IjYwMCIgZmlsbD0iI2UzMGExNyIvPjx0ZXh0IHg9IjUwJSIgeT0iNTAlIiBmb250LXNpemU9IjcwIiB0ZXh0LWFuY2hvcj0ibWlkZGxlIiBmaWxsPSJ3aGl0ZSI+QVRBVMOWUks8L3RleHQ+PC9zdmc+'"></div>
+                    <div class="cover-gif"><img src="assets/turk_bayragi.gif" alt="Bayrak" onerror="this.src='data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMTIwMCIgaGVpZ2h0PSI0MDAiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+PHJlY3Qgd2lkdGg9IjEyMDAiIGhlaWdodD0iNDAwIiBmaWxsPSIjZTMwYTE3Ii8+PGNpcmNsZSBjeD0iNjAwIiBjeT0iMjAwIiByPSIxMDAiIGZpbGw9IndoaXRlIi8+PC9zdmc+'"></div>
                     <div class="cover-title">THE NEWS</div>
                 </div>`;
             } else if (sayfa.son) {
                 html = `<div class="last-page">
-                    <img src="assets/88.jpg" alt="88" onerror="this.src='data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iNjAwIiBoZWlnaHQ9IjYwMCIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj48cmVjdCB3aWR0aD0iNjAwIiBoZWlnaHQ9IjYwMCIgZmlsbD0iI2ZkZCIvPjx0ZXh0IHg9IjUwJSIgeT0iNTAlIiBmb250LXNpemU9IjI0MCIgdGV4dC1hbmNob3I9Im1pZGRsZSI+ODg8L3RleHQ+PC9zdmc+">
+                    <img src="assets/88.jpg" alt="88" onerror="this.src='data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iOTAwIiBoZWlnaHQ9IjUwMCIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj48cmVjdCB3aWR0aD0iOTAwIiBoZWlnaHQ9IjUwMCIgZmlsbD0iI2ZkZCIvPjx0ZXh0IHg9IjUwJSIgeT0iNTAlIiBmb250LXNpemU9IjI0MCIgdGV4dC1hbmNob3I9Im1pZGRsZSI+ODg8L3RleHQ+PC9zdmc+">
                     <div class="last-message">
                         ÖĞRETMENİM 100 VERİR MİSİNİZ? 🙏
                         <small>Çok çalıştık, emeğimizin karşılığını almak isteriz</small>
@@ -841,4 +843,4 @@
         });
     </script>
 </body>
-    </html>
+</html>
