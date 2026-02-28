@@ -25,45 +25,34 @@
             position: relative;
         }
 
-        /* ========== SİDE BAR - ANİMASYONLU ========== */
+        /* ========== SİDE BAR - SADE VE ŞIK ========== */
         .side-bar {
             position: fixed;
             top: 0;
             left: -350px;
             width: 320px;
             height: 100vh;
-            background: linear-gradient(145deg, #1a1a2e, #16213e);
-            border-right: 3px solid #ffd700;
-            transition: left 0.5s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+            background: #111;
+            border-right: 2px solid #333;
+            transition: left 0.4s cubic-bezier(0.4, 0, 0.2, 1);
             z-index: 1000;
             padding: 100px 20px 20px;
-            box-shadow: 10px 0 50px rgba(255, 215, 0, 0.3);
+            box-shadow: 5px 0 30px rgba(0,0,0,0.5);
         }
 
         .side-bar.open {
             left: 0;
         }
 
-        .side-bar::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: radial-gradient(circle at 20% 30%, rgba(255, 215, 0, 0.1), transparent 70%);
-            pointer-events: none;
-        }
-
         .menu-btn {
             position: fixed;
             top: 20px;
             left: 20px;
-            width: 70px;
-            height: 70px;
-            background: linear-gradient(145deg, #ffd700, #ffa500);
-            border: 3px solid white;
-            border-radius: 20px;
+            width: 60px;
+            height: 60px;
+            background: #222;
+            border: 2px solid #444;
+            border-radius: 10px;
             cursor: pointer;
             z-index: 1001;
             display: flex;
@@ -71,208 +60,77 @@
             justify-content: center;
             align-items: center;
             gap: 8px;
-            transition: all 0.4s ease;
-            box-shadow: 0 10px 30px rgba(255, 215, 0, 0.5);
-            animation: pulse 2s infinite;
-        }
-
-        @keyframes pulse {
-            0%, 100% { transform: scale(1); box-shadow: 0 10px 30px rgba(255, 215, 0, 0.5); }
-            50% { transform: scale(1.05); box-shadow: 0 20px 40px rgba(255, 215, 0, 0.8); }
+            transition: all 0.3s;
         }
 
         .menu-btn:hover {
-            transform: rotate(180deg) scale(1.1);
-            background: linear-gradient(145deg, #ffa500, #ffd700);
+            background: #333;
+            border-color: #666;
         }
 
         .menu-btn span {
-            width: 40px;
-            height: 5px;
+            width: 35px;
+            height: 4px;
             background: white;
-            transition: all 0.4s;
-            border-radius: 10px;
+            transition: all 0.3s;
         }
 
         .menu-btn.open span:nth-child(1) {
-            transform: rotate(45deg) translate(9px, 9px);
+            transform: rotate(45deg) translate(8px, 8px);
         }
 
         .menu-btn.open span:nth-child(2) {
             opacity: 0;
-            transform: scale(0);
         }
 
         .menu-btn.open span:nth-child(3) {
-            transform: rotate(-45deg) translate(9px, -9px);
+            transform: rotate(-45deg) translate(8px, -8px);
         }
 
-        /* ========== SİDE BAR ÖĞELERİ - RENKLİ VE ANİMASYONLU ========== */
         .side-bar-item {
             width: 100%;
             padding: 25px;
-            margin: 20px 0;
-            background: linear-gradient(145deg, #2a2a4a, #1a1a3a);
-            border: 2px solid transparent;
+            margin: 15px 0;
+            background: #1a1a1a;
+            border: 1px solid #333;
             color: white;
             font-size: 1.8em;
             cursor: pointer;
-            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            transition: all 0.3s;
             text-align: center;
-            border-radius: 20px;
-            position: relative;
-            overflow: hidden;
-            box-shadow: 0 10px 20px rgba(0,0,0,0.3);
-        }
-
-        .side-bar-item::before {
-            content: '';
-            position: absolute;
-            top: 50%;
-            left: 50%;
-            width: 0;
-            height: 0;
-            border-radius: 50%;
-            background: rgba(255, 215, 0, 0.3);
-            transform: translate(-50%, -50%);
-            transition: width 0.6s, height 0.6s;
-        }
-
-        .side-bar-item:hover::before {
-            width: 300px;
-            height: 300px;
+            border-left: 5px solid transparent;
         }
 
         .side-bar-item:hover {
-            transform: translateX(10px) scale(1.05);
-            border-color: #ffd700;
-            box-shadow: 0 20px 40px rgba(255, 215, 0, 0.4);
+            background: #222;
+            border-left-color: #666;
+            transform: translateX(5px);
         }
 
         .side-bar-item.news {
-            background: linear-gradient(145deg, #e74c3c, #c0392b);
-            border-left: 8px solid #ffd700;
+            border-left-color: #e74c3c;
         }
 
-        .side-bar-item.news:hover {
-            background: linear-gradient(145deg, #ff6b5c, #e74c3c);
-        }
-
-        /* INSTAGRAM BUTONU - ÇOK RENKLİ VE GÖSTERİŞLİ */
-        .side-bar-item.instagram {
-            background: linear-gradient(45deg, #f09433, #d62976, #962fbf, #4f5bd5);
-            background-size: 300% 300%;
-            animation: gradientMove 3s ease infinite;
-            border-left: 8px solid white;
-            position: relative;
-        }
-
-        @keyframes gradientMove {
-            0% { background-position: 0% 50%; }
-            50% { background-position: 100% 50%; }
-            100% { background-position: 0% 50%; }
-        }
-
-        .side-bar-item.instagram::after {
-            content: '✨ TIKLA ✨';
-            position: absolute;
-            top: -15px;
-            right: -10px;
-            background: #ffd700;
-            color: #000;
-            font-size: 0.8em;
-            padding: 8px 15px;
-            border-radius: 30px;
-            font-weight: bold;
-            animation: bounce 1s infinite;
-            box-shadow: 0 5px 15px rgba(0,0,0,0.3);
-            border: 2px solid white;
-        }
-
-        @keyframes bounce {
-            0%, 100% { transform: translateY(0) rotate(5deg); }
-            50% { transform: translateY(-10px) rotate(-5deg); }
-        }
-
-        .side-bar-item.instagram:hover {
-            transform: translateX(10px) scale(1.1) rotate(2deg);
-            box-shadow: 0 30px 60px rgba(255, 215, 0, 0.6);
-        }
-
-        .instagram-icon {
-            font-size: 2.5em;
-            margin-bottom: 10px;
-            display: inline-block;
-            animation: spin 4s linear infinite;
-        }
-
-        @keyframes spin {
-            from { transform: rotate(0deg); }
-            to { transform: rotate(360deg); }
-        }
-
-        /* EMEĞİ GEÇENLER - ÖZEL RENKLİ */
+        /* EMEĞİ GEÇENLER - YUKARIDA ÖZEL */
         .credits-side {
-            position: absolute;
-            bottom: 30px;
-            left: 20px;
-            right: 20px;
+            width: 100%;
             padding: 25px;
-            background: linear-gradient(145deg, #ffd700, #ffa500);
-            border: 3px solid white;
-            color: #000;
-            text-align: center;
-            cursor: pointer;
-            transition: all 0.4s;
+            margin: 25px 0 15px 0;
+            background: #1a1a1a;
+            border: 1px solid #444;
+            color: #ccc;
             font-size: 1.5em;
-            font-weight: bold;
-            border-radius: 50px;
-            box-shadow: 0 10px 30px rgba(255, 215, 0, 0.5);
-            animation: glow 2s infinite;
-            overflow: hidden;
-        }
-
-        @keyframes glow {
-            0%, 100% { box-shadow: 0 10px 30px rgba(255, 215, 0, 0.5); }
-            50% { box-shadow: 0 20px 50px rgba(255, 215, 0, 0.9); }
-        }
-
-        .credits-side::before {
-            content: '👈 TIKLA TIKLA 👉';
-            position: absolute;
-            top: -20px;
-            left: 50%;
-            transform: translateX(-50%);
-            background: #e74c3c;
-            color: white;
-            font-size: 0.8em;
-            padding: 5px 15px;
-            border-radius: 30px;
-            white-space: nowrap;
-            animation: slide 1.5s infinite;
-            border: 2px solid white;
-        }
-
-        @keyframes slide {
-            0%, 100% { transform: translateX(-50%) scale(1); }
-            50% { transform: translateX(-50%) scale(1.1); }
+            cursor: pointer;
+            transition: all 0.3s;
+            text-align: center;
+            border-left: 5px solid #888;
         }
 
         .credits-side:hover {
-            transform: scale(1.05) translateY(-5px);
-            background: linear-gradient(145deg, #ffa500, #ffd700);
-            border-color: #ffd700;
-        }
-
-        .credits-side span {
-            display: inline-block;
-            animation: star 1.5s infinite;
-        }
-
-        @keyframes star {
-            0%, 100% { transform: rotate(0deg); }
-            25% { transform: rotate(10deg); }
-            75% { transform: rotate(-10deg); }
+            background: #222;
+            border-left-color: #aaa;
+            color: white;
+            transform: translateX(5px);
         }
 
         .overlay {
@@ -547,7 +405,7 @@
             width: 0;
             height: 0;
             border-radius: 50%;
-            background: rgba(255, 215, 0, 0.3);
+            background: rgba(255, 255, 255, 0.1);
             transform: translate(-50%, -50%);
             transition: width 0.4s, height 0.4s;
         }
@@ -586,7 +444,7 @@
             to { opacity: 1; transform: translateX(0); }
         }
 
-        /* MODAL - RENKLİ VE ANİMASYONLU */
+        /* MODAL - SADE VE ŞIK */
         .modal-overlay {
             display: none;
             position: fixed;
@@ -603,95 +461,70 @@
             position: fixed;
             top: 50%;
             left: 50%;
-            transform: translate(-50%, -50%) scale(0.9);
-            background: linear-gradient(145deg, #1a1a2e, #16213e);
-            padding: 50px;
-            border: 5px solid #ffd700;
+            transform: translate(-50%, -50%);
+            background: #111;
+            padding: 40px;
+            border: 2px solid #333;
             z-index: 2001;
             width: 90%;
-            max-width: 600px;
+            max-width: 500px;
             color: white;
-            border-radius: 60px;
-            box-shadow: 0 30px 80px rgba(255, 215, 0, 0.5);
-            transition: all 0.4s;
         }
 
-        .modal.active {
+        .modal.active, .modal-overlay.active {
             display: block;
-            transform: translate(-50%, -50%) scale(1);
         }
 
         .modal h2 {
             text-align: center;
-            font-size: 3em;
+            font-size: 2.5em;
             margin-bottom: 40px;
-            color: #ffd700;
-            text-shadow: 2px 2px 0 #e74c3c;
-            animation: titleGlow 2s infinite;
-        }
-
-        @keyframes titleGlow {
-            0%, 100% { text-shadow: 2px 2px 0 #e74c3c, 0 0 20px #ffd700; }
-            50% { text-shadow: 4px 4px 0 #e74c3c, 0 0 40px #ffd700; }
+            color: white;
+            border-bottom: 2px solid #333;
+            padding-bottom: 20px;
         }
 
         .credit-item {
-            background: linear-gradient(145deg, #2a2a4a, #1a1a3a);
-            padding: 25px;
+            background: #1a1a1a;
+            padding: 20px;
             margin-bottom: 20px;
-            border-left: 8px solid #ffd700;
-            border-radius: 30px;
+            border-left: 5px solid #666;
             transition: all 0.3s;
-            animation: slideIn 0.5s ease;
         }
 
         .credit-item:hover {
-            transform: translateX(10px) scale(1.02);
-            border-left-color: #e74c3c;
-            box-shadow: 0 10px 30px rgba(255, 215, 0, 0.3);
-        }
-
-        @keyframes slideIn {
-            from { opacity: 0; transform: translateX(-20px); }
-            to { opacity: 1; transform: translateX(0); }
+            background: #222;
+            border-left-color: #888;
         }
 
         .credit-name {
             font-weight: bold;
-            color: #ffd700;
-            font-size: 2em;
-            margin-bottom: 10px;
+            color: white;
+            font-size: 1.6em;
+            margin-bottom: 8px;
         }
 
         .credit-role {
-            color: #ccc;
-            font-size: 1.3em;
+            color: #aaa;
+            font-size: 1.1em;
+            line-height: 1.5;
         }
 
         .close-modal {
-            background: linear-gradient(145deg, #ffd700, #ffa500);
-            color: #000;
-            padding: 20px;
-            border: none;
-            border-radius: 50px;
+            background: #222;
+            color: white;
+            padding: 15px;
+            border: 1px solid #444;
             width: 100%;
             cursor: pointer;
-            margin-top: 30px;
-            font-size: 1.5em;
-            font-weight: bold;
+            margin-top: 20px;
+            font-size: 1.2em;
             transition: all 0.3s;
-            border: 3px solid white;
-            animation: closePulse 2s infinite;
-        }
-
-        @keyframes closePulse {
-            0%, 100% { transform: scale(1); }
-            50% { transform: scale(1.05); }
         }
 
         .close-modal:hover {
-            background: linear-gradient(145deg, #ffa500, #ffd700);
-            transform: scale(1.05);
+            background: #333;
+            border-color: #666;
         }
 
         /* MÜZİK */
@@ -703,54 +536,41 @@
         }
 
         .music-btn {
-            width: 70px;
-            height: 70px;
-            background: linear-gradient(145deg, #ffd700, #ffa500);
+            width: 60px;
+            height: 60px;
+            background: #222;
             color: white;
-            border: 4px solid white;
-            border-radius: 40px;
-            font-size: 2.2em;
+            border: 2px solid #444;
+            border-radius: 30px;
+            font-size: 1.8em;
             cursor: pointer;
-            box-shadow: 0 10px 30px rgba(255, 215, 0, 0.5);
             transition: all 0.3s;
-            animation: musicPulse 2s infinite;
-        }
-
-        @keyframes musicPulse {
-            0%, 100% { transform: scale(1); }
-            50% { transform: scale(1.1); }
         }
 
         .music-btn:hover {
-            transform: rotate(360deg) scale(1.2);
-            background: linear-gradient(145deg, #ffa500, #ffd700);
+            background: #333;
+            border-color: #666;
+            transform: scale(1.1);
         }
     </style>
 </head>
 <body>
-    <!-- MENÜ BUTONU - ANİMASYONLU -->
+    <!-- MENÜ BUTONU -->
     <div class="menu-btn" id="menuBtn" onclick="toggleSideBar()">
         <span></span>
         <span></span>
         <span></span>
     </div>
 
-    <!-- SİDE BAR - RENKLİ VE ANİMASYONLU -->
+    <!-- SİDE BAR - SADE VE ŞIK -->
     <div class="side-bar" id="sideBar">
         <div class="side-bar-item news" onclick="window.location.reload(); toggleSideBar();">
             📰 THE NEWS
         </div>
         
-        <!-- INSTAGRAM BUTONU - ÇOK RENKLİ VE GÖSTERİŞLİ -->
-        <div class="side-bar-item instagram" onclick="window.open('https://www.instagram.com', '_blank'); toggleSideBar();">
-            <span class="instagram-icon">📸</span><br>
-            INSTAGRAM
-            <div style="font-size: 0.6em; margin-top: 10px; color: white;">@the_news_official</div>
-        </div>
-        
-        <!-- EMEĞİ GEÇENLER BUTONU - RENKLİ VE ANİMASYONLU -->
+        <!-- EMEĞİ GEÇENLER - YUKARIDA -->
         <div class="credits-side" onclick="showCredits(); toggleSideBar();">
-            <span>🌟</span> EMEĞİ GEÇENLER <span>🌟</span>
+            👥 EMEĞİ GEÇENLER
         </div>
     </div>
 
@@ -776,27 +596,27 @@
         </div>
     </div>
 
-    <!-- MODAL - RENKLİ VE ANİMASYONLU -->
+    <!-- MODAL - EMEĞİ GEÇENLER -->
     <div class="modal-overlay" id="modalOverlay" onclick="hideCredits()"></div>
     <div class="modal" id="creditsModal">
-        <h2>🌟 EMEĞİ GEÇENLER 🌟</h2>
+        <h2>🌟 EMEĞİ GEÇENLER</h2>
         
         <div class="credit-item">
             <div class="credit-name">Ömer Asaf</div>
-            <div class="credit-role">✨ Developer • Tasarımcı • Proje Sahibi ✨</div>
+            <div class="credit-role">Developer • Geliştirici</div>
         </div>
         
         <div class="credit-item">
             <div class="credit-name">Necati Kaan</div>
-            <div class="credit-role">💡 Fikir Veren • Konfor Odaklı Çözümler • İlham Kaynağı 💡</div>
+            <div class="credit-role">Konfor Odaklı Çözümler • Fikir Veren</div>
         </div>
         
         <div class="credit-item">
             <div class="credit-name">Mehmet Karagöz</div>
-            <div class="credit-role">🔧 Kod Hatalarını Bildiren • Düzelten • Test Uzmanı 🔧</div>
+            <div class="credit-role">Kod Hatalarını Bildiren • Denetimci</div>
         </div>
         
-        <button class="close-modal" onclick="hideCredits()">KAPAT ✨</button>
+        <button class="close-modal" onclick="hideCredits()">KAPAT</button>
     </div>
 
     <!-- MÜZİK -->
@@ -1032,4 +852,4 @@
         });
     </script>
 </body>
-</html>
+            </html>
