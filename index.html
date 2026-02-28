@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=yes">
-    <title>GroupProject(MiniPekka,Nehx,SansiAsaf)</title>
+    <title>THE NEWS |GroupProject(SansiAsaf,Nehxet,MiniPekka)</title>
     <style>
         * {
             margin: 0;
@@ -25,34 +25,45 @@
             position: relative;
         }
 
-        /* ========== SİDE BAR ========== */
+        /* ========== SİDE BAR - ANİMASYONLU ========== */
         .side-bar {
             position: fixed;
             top: 0;
-            left: -320px;
-            width: 300px;
+            left: -350px;
+            width: 320px;
             height: 100vh;
-            background: #111;
-            border-right: 2px solid #333;
-            transition: left 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            background: linear-gradient(145deg, #1a1a2e, #16213e);
+            border-right: 3px solid #ffd700;
+            transition: left 0.5s cubic-bezier(0.68, -0.55, 0.265, 1.55);
             z-index: 1000;
             padding: 100px 20px 20px;
-            box-shadow: 5px 0 30px rgba(0,0,0,0.5);
+            box-shadow: 10px 0 50px rgba(255, 215, 0, 0.3);
         }
 
         .side-bar.open {
             left: 0;
         }
 
+        .side-bar::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: radial-gradient(circle at 20% 30%, rgba(255, 215, 0, 0.1), transparent 70%);
+            pointer-events: none;
+        }
+
         .menu-btn {
             position: fixed;
             top: 20px;
             left: 20px;
-            width: 60px;
-            height: 60px;
-            background: #111;
-            border: 2px solid #333;
-            border-radius: 10px;
+            width: 70px;
+            height: 70px;
+            background: linear-gradient(145deg, #ffd700, #ffa500);
+            border: 3px solid white;
+            border-radius: 20px;
             cursor: pointer;
             z-index: 1001;
             display: flex;
@@ -60,75 +71,208 @@
             justify-content: center;
             align-items: center;
             gap: 8px;
-            transition: all 0.3s;
+            transition: all 0.4s ease;
+            box-shadow: 0 10px 30px rgba(255, 215, 0, 0.5);
+            animation: pulse 2s infinite;
+        }
+
+        @keyframes pulse {
+            0%, 100% { transform: scale(1); box-shadow: 0 10px 30px rgba(255, 215, 0, 0.5); }
+            50% { transform: scale(1.05); box-shadow: 0 20px 40px rgba(255, 215, 0, 0.8); }
         }
 
         .menu-btn:hover {
-            background: #222;
-            border-color: #666;
+            transform: rotate(180deg) scale(1.1);
+            background: linear-gradient(145deg, #ffa500, #ffd700);
         }
 
         .menu-btn span {
-            width: 35px;
-            height: 4px;
+            width: 40px;
+            height: 5px;
             background: white;
-            transition: all 0.3s;
+            transition: all 0.4s;
+            border-radius: 10px;
         }
 
         .menu-btn.open span:nth-child(1) {
-            transform: rotate(45deg) translate(8px, 8px);
+            transform: rotate(45deg) translate(9px, 9px);
         }
 
         .menu-btn.open span:nth-child(2) {
             opacity: 0;
+            transform: scale(0);
         }
 
         .menu-btn.open span:nth-child(3) {
-            transform: rotate(-45deg) translate(8px, -8px);
+            transform: rotate(-45deg) translate(9px, -9px);
         }
 
+        /* ========== SİDE BAR ÖĞELERİ - RENKLİ VE ANİMASYONLU ========== */
         .side-bar-item {
             width: 100%;
             padding: 25px;
-            margin: 15px 0;
-            background: #1a1a1a;
-            border: 1px solid #333;
+            margin: 20px 0;
+            background: linear-gradient(145deg, #2a2a4a, #1a1a3a);
+            border: 2px solid transparent;
             color: white;
             font-size: 1.8em;
             cursor: pointer;
-            transition: all 0.3s;
+            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
             text-align: center;
-            border-left: 5px solid transparent;
+            border-radius: 20px;
+            position: relative;
+            overflow: hidden;
+            box-shadow: 0 10px 20px rgba(0,0,0,0.3);
+        }
+
+        .side-bar-item::before {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            width: 0;
+            height: 0;
+            border-radius: 50%;
+            background: rgba(255, 215, 0, 0.3);
+            transform: translate(-50%, -50%);
+            transition: width 0.6s, height 0.6s;
+        }
+
+        .side-bar-item:hover::before {
+            width: 300px;
+            height: 300px;
         }
 
         .side-bar-item:hover {
-            background: #222;
-            border-left-color: #ffd700;
-            transform: translateX(5px);
+            transform: translateX(10px) scale(1.05);
+            border-color: #ffd700;
+            box-shadow: 0 20px 40px rgba(255, 215, 0, 0.4);
         }
 
         .side-bar-item.news {
-            border-left-color: #e74c3c;
+            background: linear-gradient(145deg, #e74c3c, #c0392b);
+            border-left: 8px solid #ffd700;
         }
 
+        .side-bar-item.news:hover {
+            background: linear-gradient(145deg, #ff6b5c, #e74c3c);
+        }
+
+        /* INSTAGRAM BUTONU - ÇOK RENKLİ VE GÖSTERİŞLİ */
+        .side-bar-item.instagram {
+            background: linear-gradient(45deg, #f09433, #d62976, #962fbf, #4f5bd5);
+            background-size: 300% 300%;
+            animation: gradientMove 3s ease infinite;
+            border-left: 8px solid white;
+            position: relative;
+        }
+
+        @keyframes gradientMove {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
+
+        .side-bar-item.instagram::after {
+            content: '✨ TIKLA ✨';
+            position: absolute;
+            top: -15px;
+            right: -10px;
+            background: #ffd700;
+            color: #000;
+            font-size: 0.8em;
+            padding: 8px 15px;
+            border-radius: 30px;
+            font-weight: bold;
+            animation: bounce 1s infinite;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.3);
+            border: 2px solid white;
+        }
+
+        @keyframes bounce {
+            0%, 100% { transform: translateY(0) rotate(5deg); }
+            50% { transform: translateY(-10px) rotate(-5deg); }
+        }
+
+        .side-bar-item.instagram:hover {
+            transform: translateX(10px) scale(1.1) rotate(2deg);
+            box-shadow: 0 30px 60px rgba(255, 215, 0, 0.6);
+        }
+
+        .instagram-icon {
+            font-size: 2.5em;
+            margin-bottom: 10px;
+            display: inline-block;
+            animation: spin 4s linear infinite;
+        }
+
+        @keyframes spin {
+            from { transform: rotate(0deg); }
+            to { transform: rotate(360deg); }
+        }
+
+        /* EMEĞİ GEÇENLER - ÖZEL RENKLİ */
         .credits-side {
             position: absolute;
             bottom: 30px;
             left: 20px;
             right: 20px;
-            padding: 20px;
-            background: #1a1a1a;
-            border: 1px solid #333;
-            color: #888;
+            padding: 25px;
+            background: linear-gradient(145deg, #ffd700, #ffa500);
+            border: 3px solid white;
+            color: #000;
             text-align: center;
             cursor: pointer;
-            transition: all 0.3s;
-            font-size: 1.3em;
+            transition: all 0.4s;
+            font-size: 1.5em;
+            font-weight: bold;
+            border-radius: 50px;
+            box-shadow: 0 10px 30px rgba(255, 215, 0, 0.5);
+            animation: glow 2s infinite;
+            overflow: hidden;
+        }
+
+        @keyframes glow {
+            0%, 100% { box-shadow: 0 10px 30px rgba(255, 215, 0, 0.5); }
+            50% { box-shadow: 0 20px 50px rgba(255, 215, 0, 0.9); }
+        }
+
+        .credits-side::before {
+            content: '👈 TIKLA TIKLA 👉';
+            position: absolute;
+            top: -20px;
+            left: 50%;
+            transform: translateX(-50%);
+            background: #e74c3c;
+            color: white;
+            font-size: 0.8em;
+            padding: 5px 15px;
+            border-radius: 30px;
+            white-space: nowrap;
+            animation: slide 1.5s infinite;
+            border: 2px solid white;
+        }
+
+        @keyframes slide {
+            0%, 100% { transform: translateX(-50%) scale(1); }
+            50% { transform: translateX(-50%) scale(1.1); }
         }
 
         .credits-side:hover {
-            color: white;
-            border-color: #666;
+            transform: scale(1.05) translateY(-5px);
+            background: linear-gradient(145deg, #ffa500, #ffd700);
+            border-color: #ffd700;
+        }
+
+        .credits-side span {
+            display: inline-block;
+            animation: star 1.5s infinite;
+        }
+
+        @keyframes star {
+            0%, 100% { transform: rotate(0deg); }
+            25% { transform: rotate(10deg); }
+            75% { transform: rotate(-10deg); }
         }
 
         .overlay {
@@ -201,7 +345,7 @@
             margin-left: 70px;
         }
 
-        /* ========== 1. SAYFA - ATATÜRK DİK BÜYÜK, BAYRAK YATAY BÜYÜK ========== */
+        /* ========== 1. SAYFA ========== */
         .cover-page {
             min-height: calc(100vh - 120px);
             display: flex;
@@ -244,7 +388,7 @@
             text-shadow: 3px 3px 0 #333;
         }
 
-        /* ========== HABER SAYFALARI - YATAY BÜYÜK GÖRSELLER ========== */
+        /* ========== HABER SAYFALARI ========== */
         .news-single {
             display: flex;
             flex-direction: column;
@@ -280,7 +424,7 @@
 
         .news-image {
             width: 100%;
-            height: 500px;
+            height: 550px;
             background: #222;
             margin: 30px 0;
             border: 3px solid #333;
@@ -301,7 +445,7 @@
             text-align: justify;
         }
 
-        /* ========== SON SAYFA - BÜYÜK YATAY 88.jpg ========== */
+        /* ========== SON SAYFA ========== */
         .last-page {
             min-height: calc(100vh - 120px);
             display: flex;
@@ -442,7 +586,7 @@
             to { opacity: 1; transform: translateX(0); }
         }
 
-        /* MODAL */
+        /* MODAL - RENKLİ VE ANİMASYONLU */
         .modal-overlay {
             display: none;
             position: fixed;
@@ -459,55 +603,95 @@
             position: fixed;
             top: 50%;
             left: 50%;
-            transform: translate(-50%, -50%);
-            background: #111;
-            padding: 40px;
-            border: 3px solid #333;
+            transform: translate(-50%, -50%) scale(0.9);
+            background: linear-gradient(145deg, #1a1a2e, #16213e);
+            padding: 50px;
+            border: 5px solid #ffd700;
             z-index: 2001;
             width: 90%;
-            max-width: 500px;
+            max-width: 600px;
             color: white;
+            border-radius: 60px;
+            box-shadow: 0 30px 80px rgba(255, 215, 0, 0.5);
+            transition: all 0.4s;
         }
 
-        .modal.active, .modal-overlay.active {
+        .modal.active {
             display: block;
+            transform: translate(-50%, -50%) scale(1);
         }
 
         .modal h2 {
             text-align: center;
-            font-size: 2.5em;
+            font-size: 3em;
             margin-bottom: 40px;
-            color: white;
+            color: #ffd700;
+            text-shadow: 2px 2px 0 #e74c3c;
+            animation: titleGlow 2s infinite;
+        }
+
+        @keyframes titleGlow {
+            0%, 100% { text-shadow: 2px 2px 0 #e74c3c, 0 0 20px #ffd700; }
+            50% { text-shadow: 4px 4px 0 #e74c3c, 0 0 40px #ffd700; }
         }
 
         .credit-item {
-            background: #1a1a1a;
-            padding: 20px;
+            background: linear-gradient(145deg, #2a2a4a, #1a1a3a);
+            padding: 25px;
             margin-bottom: 20px;
-            border-left: 8px solid #666;
+            border-left: 8px solid #ffd700;
+            border-radius: 30px;
+            transition: all 0.3s;
+            animation: slideIn 0.5s ease;
+        }
+
+        .credit-item:hover {
+            transform: translateX(10px) scale(1.02);
+            border-left-color: #e74c3c;
+            box-shadow: 0 10px 30px rgba(255, 215, 0, 0.3);
+        }
+
+        @keyframes slideIn {
+            from { opacity: 0; transform: translateX(-20px); }
+            to { opacity: 1; transform: translateX(0); }
         }
 
         .credit-name {
             font-weight: bold;
-            color: white;
-            font-size: 1.8em;
-            margin-bottom: 8px;
+            color: #ffd700;
+            font-size: 2em;
+            margin-bottom: 10px;
         }
 
         .credit-role {
-            color: #888;
-            font-size: 1.2em;
+            color: #ccc;
+            font-size: 1.3em;
         }
 
         .close-modal {
-            background: #222;
-            color: white;
-            padding: 15px;
-            border: 1px solid #444;
+            background: linear-gradient(145deg, #ffd700, #ffa500);
+            color: #000;
+            padding: 20px;
+            border: none;
+            border-radius: 50px;
             width: 100%;
             cursor: pointer;
             margin-top: 30px;
-            font-size: 1.3em;
+            font-size: 1.5em;
+            font-weight: bold;
+            transition: all 0.3s;
+            border: 3px solid white;
+            animation: closePulse 2s infinite;
+        }
+
+        @keyframes closePulse {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.05); }
+        }
+
+        .close-modal:hover {
+            background: linear-gradient(145deg, #ffa500, #ffd700);
+            transform: scale(1.05);
         }
 
         /* MÜZİK */
@@ -519,38 +703,54 @@
         }
 
         .music-btn {
-            width: 60px;
-            height: 60px;
-            background: #222;
+            width: 70px;
+            height: 70px;
+            background: linear-gradient(145deg, #ffd700, #ffa500);
             color: white;
-            border: 2px solid #444;
-            border-radius: 30px;
-            font-size: 1.8em;
+            border: 4px solid white;
+            border-radius: 40px;
+            font-size: 2.2em;
             cursor: pointer;
+            box-shadow: 0 10px 30px rgba(255, 215, 0, 0.5);
+            transition: all 0.3s;
+            animation: musicPulse 2s infinite;
         }
 
-        @media (orientation: landscape) {
-            .news-image {
-                height: 550px;
-            }
+        @keyframes musicPulse {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.1); }
+        }
+
+        .music-btn:hover {
+            transform: rotate(360deg) scale(1.2);
+            background: linear-gradient(145deg, #ffa500, #ffd700);
         }
     </style>
 </head>
 <body>
-    <!-- MENÜ BUTONU -->
+    <!-- MENÜ BUTONU - ANİMASYONLU -->
     <div class="menu-btn" id="menuBtn" onclick="toggleSideBar()">
         <span></span>
         <span></span>
         <span></span>
     </div>
 
-    <!-- SİDE BAR -->
+    <!-- SİDE BAR - RENKLİ VE ANİMASYONLU -->
     <div class="side-bar" id="sideBar">
         <div class="side-bar-item news" onclick="window.location.reload(); toggleSideBar();">
             📰 THE NEWS
         </div>
+        
+        <!-- INSTAGRAM BUTONU - ÇOK RENKLİ VE GÖSTERİŞLİ -->
+        <div class="side-bar-item instagram" onclick="window.open('https://www.instagram.com', '_blank'); toggleSideBar();">
+            <span class="instagram-icon">📸</span><br>
+            INSTAGRAM
+            <div style="font-size: 0.6em; margin-top: 10px; color: white;">@the_news_official</div>
+        </div>
+        
+        <!-- EMEĞİ GEÇENLER BUTONU - RENKLİ VE ANİMASYONLU -->
         <div class="credits-side" onclick="showCredits(); toggleSideBar();">
-            👥 EMEĞİ GEÇENLER
+            <span>🌟</span> EMEĞİ GEÇENLER <span>🌟</span>
         </div>
     </div>
 
@@ -576,23 +776,27 @@
         </div>
     </div>
 
-    <!-- MODAL -->
+    <!-- MODAL - RENKLİ VE ANİMASYONLU -->
     <div class="modal-overlay" id="modalOverlay" onclick="hideCredits()"></div>
     <div class="modal" id="creditsModal">
-        <h2>🌟 EMEĞİ GEÇENLER</h2>
+        <h2>🌟 EMEĞİ GEÇENLER 🌟</h2>
+        
         <div class="credit-item">
             <div class="credit-name">Ömer Asaf</div>
-            <div class="credit-role">Developer • Tasarımcı</div>
+            <div class="credit-role">✨ Developer • Tasarımcı • Proje Sahibi ✨</div>
         </div>
+        
         <div class="credit-item">
             <div class="credit-name">Necati Kaan</div>
-            <div class="credit-role">Fikir Veren • Konfor Odaklı Çözümler</div>
+            <div class="credit-role">💡 Fikir Veren • Konfor Odaklı Çözümler • İlham Kaynağı 💡</div>
         </div>
+        
         <div class="credit-item">
             <div class="credit-name">Mehmet Karagöz</div>
-            <div class="credit-role">Kod Hatalarını Bildiren • Düzelten</div>
+            <div class="credit-role">🔧 Kod Hatalarını Bildiren • Düzelten • Test Uzmanı 🔧</div>
         </div>
-        <button class="close-modal" onclick="hideCredits()">KAPAT</button>
+        
+        <button class="close-modal" onclick="hideCredits()">KAPAT ✨</button>
     </div>
 
     <!-- MÜZİK -->
@@ -615,146 +819,131 @@
         const totalPages = 17;
         let isMusicOn = true;
 
-        // ========== UZUN HABERLER (Her sayfada 1 haber) ==========
+        // ========== UZUN HABERLER ==========
         const haberler = [
-            // Sayfa 2 - Havana Sendromu
             {
                 tr: "Havana Sendromu: Sosyal Medya ve Yapay Zeka Forumunun Sırları",
                 en: "Havana Syndrome: Secrets of Social Media and AI Forum",
-                icerik_tr: "The Interface programında Havana sendromu, sosyal medyanın yargılanması ve yapay zeka forumunun gizli kalmış sırları mercek altına alınıyor. Uzmanlar teknolojinin insan sağlığı üzerindeki etkilerini tartışıyor. 35 dakikalık özel bölüm büyük ilgi gördü. Programda, diplomatlar ve istihbarat görevlilerini etkileyen gizemli Havana sendromunun ardında yeni nesil yönlendirilmiş enerji silahları mı yoksa kitlesel histeri mi olduğu sorusu irdeleniyor. Yapay zeka forumunda ise, büyük teknoloji şirketlerinin etik sınırları zorlayan uygulamaları ve hükümetlerle gizli işbirlikleri masaya yatırılıyor. Uzmanlar, sosyal medya algoritmalarının toplum mühendisliğinde nasıl kullanıldığını ve seçim süreçlerine etkilerini detaylandırıyor. Ayrıca, yapay zeka destekli dezenformasyon kampanyalarının demokrasiler için oluşturduğu tehditler üzerinde duruluyor.",
-                icerik_en: "In The Interface program, Havana syndrome, the trial of social media and the hidden secrets of the AI forum are being scrutinized. Experts discuss the effects of technology on human health. The 35-minute special episode attracted great attention. The program examines whether next-generation directed energy weapons or mass hysteria lie behind the mysterious Havana syndrome affecting diplomats and intelligence officers. At the AI forum, the ethical boundary-pushing practices of big tech companies and their secret collaborations with governments are brought to the table. Experts detail how social media algorithms are used in social engineering and their effects on election processes. Also emphasized are the threats posed by AI-supported disinformation campaigns to democracies.",
+                icerik_tr: "The Interface programında Havana sendromu, sosyal medyanın yargılanması ve yapay zeka forumunun gizli kalmış sırları mercek altına alınıyor. Uzmanlar teknolojinin insan sağlığı üzerindeki etkilerini tartışıyor. 35 dakikalık özel bölüm büyük ilgi gördü. Programda, diplomatlar ve istihbarat görevlilerini etkileyen gizemli Havana sendromunun ardında yeni nesil yönlendirilmiş enerji silahları mı yoksa kitlesel histeri mi olduğu sorusu irdeleniyor. Yapay zeka forumunda ise, büyük teknoloji şirketlerinin etik sınırları zorlayan uygulamaları ve hükümetlerle gizli işbirlikleri masaya yatırılıyor.",
+                icerik_en: "In The Interface program, Havana syndrome, the trial of social media and the hidden secrets of the AI forum are being scrutinized. Experts discuss the effects of technology on human health. The 35-minute special episode attracted great attention. The program examines whether next-generation directed energy weapons or mass hysteria lie behind the mysterious Havana syndrome affecting diplomats and intelligence officers.",
                 resim: "bbc1.jpg",
                 kategori: "TEKNOLOJİ"
             },
-            // Sayfa 3 - Moda Endüstrisi
             {
                 tr: "Moda Endüstrisinin Kör Noktası: Beden Ölçüleri ve Yapay Zeka Çözümü",
                 en: "Fashion Industry's Blind Spot: Sizing and AI Solution",
-                icerik_tr: "Tech Now, moda endüstrisinin en büyük sorunlarından biri olan tutarsız beden ölçülerini çözmeye çalışan bir girişimle görüştü. Yeni teknoloji sayesinde herkes kendine uygun kıyafetleri bulabilecek. Startup'ın geliştirdiği yapay zeka tabanlı ölçüm sistemi devrim yaratabilir. Günümüzde her markanın farklı beden tabloları kullanması, özellikle online alışverişte büyük hayal kırıklıklarına ve iade oranlarının fırlamasına neden oluyor. Bu durum hem tüketicileri hem de perakendecileri maddi olarak zorluyor. Girişim, akıllı telefon kamerasıyla vücut taraması yaparak kişiye özel beden profili oluşturuyor ve bu profili farklı markaların ölçüleriyle eşleştiriyor. Sistem, sadece iki fotoğrafla yüzlerce veri noktasını analiz ederek milimetrik doğruluk sağlıyor. Şirket, büyük moda perakendecileriyle görüşmelere başladığını ve sistemin önümüzdeki yıl piyasaya sürüleceğini duyurdu.",
-                icerik_en: "Tech Now met with a startup trying to fix one of the fashion industry's biggest blind spots: inconsistent sizing. Thanks to new technology, everyone will be able to find clothes that fit them. The AI-based measurement system developed by the startup could revolutionize the industry. Today, every brand using different size charts causes great disappointment and skyrocketing return rates, especially in online shopping. This financially challenges both consumers and retailers. The startup creates a personalized body profile by scanning the body with a smartphone camera and matches this profile with the measurements of different brands. The system analyzes hundreds of data points with just two photos, providing millimeter accuracy. The company announced that it has started talks with major fashion retailers and the system will be launched next year.",
+                icerik_tr: "Tech Now, moda endüstrisinin en büyük sorunlarından biri olan tutarsız beden ölçülerini çözmeye çalışan bir girişimle görüştü. Yeni teknoloji sayesinde herkes kendine uygun kıyafetleri bulabilecek. Startup'ın geliştirdiği yapay zeka tabanlı ölçüm sistemi devrim yaratabilir. Günümüzde her markanın farklı beden tabloları kullanması, özellikle online alışverişte büyük hayal kırıklıklarına ve iade oranlarının fırlamasına neden oluyor.",
+                icerik_en: "Tech Now met with a startup trying to fix one of the fashion industry's biggest blind spots: inconsistent sizing. Thanks to new technology, everyone will be able to find clothes that fit them. The AI-based measurement system developed by the startup could revolutionize the industry.",
                 resim: "bbc2.jpg",
                 kategori: "TEKNOLOJİ"
             },
-            // Sayfa 4 - İklim Krizi
             {
                 tr: "İklim Krizi: Avrupa'da Rekor Sıcaklıklar ve Orman Yangınları",
                 en: "Climate Crisis: Record Temperatures and Forest Fires in Europe",
-                icerik_tr: "Avrupa'da son 100 yılın en sıcak yazı yaşanıyor. Sıcak hava dalgası orman yangınlarını tetikledi. Bilim insanları, küresel ısınmanın etkilerinin giderek arttığını ve acil önlem alınması gerektiğini vurguluyor. İspanya, Yunanistan ve İtalya'da yüzlerce hektar ormanlık alan kül oldu, binlerce kişi tahliye edildi. Uzmanlar, sıcaklıkların önümüzdeki günlerde daha da artabileceği konusunda uyarıyor. Bu yılki aşırı sıcakların, iklim değişikliğiyle mücadelede yetersiz kalındığının bir göstergesi olduğu belirtiliyor. Avrupa Birliği, üye ülkelerin yangınlarla mücadelesine destek olmak için uydu izleme sistemlerini devreye soktu. Orman yangınlarının yanı sıra aşırı sıcaklar nedeniyle Fransa ve Almanya'da nehirlerde su seviyeleri kritik derecede düştü, nükleer santrallerin soğutma sistemlerinde aksamalar yaşanabileceği uyarısı yapıldı.",
-                icerik_en: "Europe is experiencing the hottest summer in 100 years. The heatwave has triggered forest fires. Scientists emphasize that the effects of global warming are increasing and urgent measures are needed. Hundreds of hectares of forest have burned in Spain, Greece and Italy, and thousands have been evacuated. Experts warn that temperatures could rise further in the coming days. It is stated that this year's extreme heat is an indication of inadequacy in combating climate change. The European Union has activated satellite monitoring systems to support member countries in fighting fires. In addition to forest fires, water levels in rivers in France and Germany have dropped critically due to extreme heat, and warnings have been made that cooling systems of nuclear power plants may be disrupted.",
+                icerik_tr: "Avrupa'da son 100 yılın en sıcak yazı yaşanıyor. Sıcak hava dalgası orman yangınlarını tetikledi. Bilim insanları, küresel ısınmanın etkilerinin giderek arttığını ve acil önlem alınması gerektiğini vurguluyor. İspanya, Yunanistan ve İtalya'da yüzlerce hektar ormanlık alan kül oldu, binlerce kişi tahliye edildi. Uzmanlar, sıcaklıkların önümüzdeki günlerde daha da artabileceği konusunda uyarıyor.",
+                icerik_en: "Europe is experiencing the hottest summer in 100 years. The heatwave has triggered forest fires. Scientists emphasize that the effects of global warming are increasing and urgent measures are needed. Hundreds of hectares of forest have burned in Spain, Greece and Italy, and thousands have been evacuated.",
                 resim: "bbc3.jpg",
                 kategori: "ÇEVRE"
             },
-            // Sayfa 5 - Plastik Kirliliği
             {
                 tr: "Okyanuslarda Plastik Kirliliği Alarmı: 2050'de Üç Katına Çıkabilir",
                 en: "Plastic Pollution Alert in Oceans: Could Triple by 2050",
-                icerik_tr: "Her yıl 8 milyon ton plastik okyanuslara karışıyor. Deniz canlıları bu plastikleri yiyerek yaşamını yitiriyor. Yeni bir araştırma, plastik kirliliğinin 2050'ye kadar üç katına çıkabileceğini gösteriyor. Bilim insanları, mevcut gidişatın durdurulamaması halinde, 2050 yılında okyanuslarda balıktan çok plastik atık bulunacağını belirtiyor. Pasifik Okyanusu'ndaki Büyük Pasifik Çöp Alanı'nın yüzölçümü şimdiden Fransa'nın üç katı büyüklüğe ulaştı. Mikroplastiklerin besin zincirine karışması, insan sağlığı için de büyük tehdit oluşturuyor. Yapılan son araştırmalar, içme suyu kaynaklarında ve hatta insan kanında mikroplastik tespit edildiğini ortaya koydu. Birleşmiş Milletler, plastik kirliliğiyle mücadele için küresel bir anlaşma hazırlıyor. Anlaşmanın, tek kullanımlık plastiklerin yasaklanması ve geri dönüşüm oranlarının artırılmasını içermesi bekleniyor.",
-                icerik_en: "8 million tons of plastic end up in oceans every year. Marine life dies by eating these plastics. New research shows plastic pollution could triple by 2050. Scientists state that if the current trend cannot be stopped, there will be more plastic waste than fish in the oceans by 2050. The Great Pacific Garbage Patch in the Pacific Ocean has already reached an area three times the size of France. The mixing of microplastics into the food chain poses a great threat to human health. Recent research has revealed that microplastics have been detected in drinking water sources and even in human blood. The United Nations is preparing a global agreement to combat plastic pollution. The agreement is expected to include banning single-use plastics and increasing recycling rates.",
+                icerik_tr: "Her yıl 8 milyon ton plastik okyanuslara karışıyor. Deniz canlıları bu plastikleri yiyerek yaşamını yitiriyor. Yeni bir araştırma, plastik kirliliğinin 2050'ye kadar üç katına çıkabileceğini gösteriyor. Bilim insanları, mevcut gidişatın durdurulamaması halinde, 2050 yılında okyanuslarda balıktan çok plastik atık bulunacağını belirtiyor.",
+                icerik_en: "8 million tons of plastic end up in oceans every year. Marine life dies by eating these plastics. New research shows plastic pollution could triple by 2050. Scientists state that if the current trend cannot be stopped, there will be more plastic waste than fish in the oceans by 2050.",
                 resim: "bbc4.jpg",
                 kategori: "ÇEVRE"
             },
-            // Sayfa 6 - Kanser Araştırmaları
             {
                 tr: "Kanser Araştırmalarında Çığır Açan Gelişme: 50 Kanser Türünü Tespit Eden Kan Testi",
                 en: "Breakthrough in Cancer Research: Blood Test Detects 50 Types of Cancer",
-                icerik_tr: "Bilim insanları, erken evre kanseri tespit edebilen bir kan testi geliştirdi. Test, 50'den fazla kanser türünü yüksek doğrulukla tespit edebiliyor. Bu buluş, milyonlarca insanın hayatını kurtarabilir. İngiltere'deki araştırma merkezinde geliştirilen test, tümörlerin kana saldığı DNA parçacıklarını analiz ederek çalışıyor. Test, pankreas, yumurtalık ve karaciğer gibi erken teşhisi zor olan kanser türlerinde yüzde 90'ın üzerinde başarı gösterdi. Klinik denemelere 10 bin kişi katıldı ve sonuçlar tıp dünyasında heyecan yarattı. Araştırmacılar, testin rutin sağlık kontrollerinin bir parçası haline gelebileceğini ve kanser kaynaklı ölümleri önemli ölçüde azaltabileceğini belirtiyor. Testin maliyetinin 5 yıl içinde 100 doların altına düşmesi bekleniyor. İngiltere Ulusal Sağlık Sistemi, testi 2025 yılından itibaren risk grubundaki hastalara uygulamaya başlayacağını duyurdu.",
-                icerik_en: "Scientists have developed a blood test that can detect early-stage cancer. The test can detect more than 50 types of cancer with high accuracy. This discovery could save millions of lives. The test, developed at a research center in England, works by analyzing DNA fragments released by tumors into the blood. The test showed over 90% success in hard-to-detect cancers such as pancreatic, ovarian and liver. 10 thousand people participated in clinical trials and the results excited the medical world. Researchers say the test could become part of routine health checks and significantly reduce cancer deaths. The cost of the test is expected to fall below $100 within 5 years. The UK National Health Service announced that it will start applying the test to at-risk patients from 2025.",
+                icerik_tr: "Bilim insanları, erken evre kanseri tespit edebilen bir kan testi geliştirdi. Test, 50'den fazla kanser türünü yüksek doğrulukla tespit edebiliyor. Bu buluş, milyonlarca insanın hayatını kurtarabilir. İngiltere'deki araştırma merkezinde geliştirilen test, tümörlerin kana saldığı DNA parçacıklarını analiz ederek çalışıyor.",
+                icerik_en: "Scientists have developed a blood test that can detect early-stage cancer. The test can detect more than 50 types of cancer with high accuracy. This discovery could save millions of lives. The test works by analyzing DNA fragments released by tumors into the blood.",
                 resim: "bbc5.jpg",
                 kategori: "SAĞLIK"
             },
-            // Sayfa 7 - Uyku Apnesi
             {
                 tr: "Uyku Apnesine Yeni Tedavi Yöntemi: Yapay Zeka Destekli Cihaz Yüzde 90 Başarı Sağladı",
                 en: "New Treatment Method for Sleep Apnea: AI-Powered Device Achieves 90% Success",
-                icerik_tr: "İngiltere'de geliştirilen yeni bir cihaz, uyku apnesi hastalarının tedavisinde yüzde 90 başarı sağladı. Cihaz, hastaların nefes almasını düzenleyerek yaşam kalitesini artırıyor. Geleneksel CPAP makinelerine alternatif olarak geliştirilen implant cihaz, diyaframa yerleştirilen küçük bir sensör sayesinde nefes almayı gerçek zamanlı izliyor ve gerektiğinde sinirleri uyararak solunum kaslarını harekete geçiriyor. 200 hasta üzerinde yapılan klinik denemelerde, hastaların yüzde 90'ında uyku apnesi semptomlarının tamamen ortadan kalktığı veya önemli ölçüde azaldığı gözlemlendi. Cihazın en büyük avantajı, hastaların yüz maskesi takma zorunluluğunu ortadan kaldırması. Uyku apnesi, tedavi edilmediğinde kalp hastalıkları, felç ve diyabet riskini artırıyor. Dünya genelinde yaklaşık 1 milyar insanın uyku apnesi sorunu yaşadığı tahmin ediliyor.",
-                icerik_en: "A new device developed in England has achieved 90% success in treating sleep apnea patients. The device regulates patients' breathing and improves quality of life. The implant device, developed as an alternative to traditional CPAP machines, monitors breathing in real-time with a small sensor placed in the diaphragm and stimulates nerves when necessary to activate respiratory muscles. In clinical trials on 200 patients, it was observed that sleep apnea symptoms completely disappeared or significantly decreased in 90% of patients. The biggest advantage of the device is that it eliminates the need for patients to wear a face mask. Untreated sleep apnea increases the risk of heart disease, stroke and diabetes. An estimated 1 billion people worldwide suffer from sleep apnea.",
+                icerik_tr: "İngiltere'de geliştirilen yeni bir cihaz, uyku apnesi hastalarının tedavisinde yüzde 90 başarı sağladı. Cihaz, hastaların nefes almasını düzenleyerek yaşam kalitesini artırıyor. 200 hasta üzerinde yapılan klinik denemelerde, hastaların yüzde 90'ında uyku apnesi semptomlarının tamamen ortadan kalktığı gözlemlendi.",
+                icerik_en: "A new device developed in England has achieved 90% success in treating sleep apnea patients. The device regulates patients' breathing and improves quality of life. In clinical trials on 200 patients, sleep apnea symptoms completely disappeared in 90% of patients.",
                 resim: "bbc6.jpg",
                 kategori: "SAĞLIK"
             },
-            // Sayfa 8 - Gazze Krizi
             {
                 tr: "BM'den Gazze İçin Acil Yardım Çağrısı: İnsani Kriz Derinleşiyor",
                 en: "UN Emergency Aid Call for Gaza: Humanitarian Crisis Deepening",
-                icerik_tr: "Birleşmiş Milletler, Gazze'de insani krizin derinleştiğini belirterek acil yardım çağrısında bulundu. Bölgede temel ihtiyaç maddelerine erişim giderek zorlaşıyor. BM yetkilileri, Gazze'deki hastanelerin yakıt ve tıbbi malzeme sıkıntısı çektiğini, temiz su kaynaklarının tükenmek üzere olduğunu açıkladı. Binlerce sivil evlerini terk etmek zorunda kalırken, BM okulları sığınma merkezine dönüştürüldü. Dünya Gıda Programı, bölgede gıda stoklarının bir hafta içinde tükeneceği uyarısında bulundu. Uluslararası Kızılhaç Komitesi, taraflara uluslararası insancıl hukuka uyma çağrısı yaparken, birçok ülke insani yardım koridoru açılması için diplomatik girişimlerini sürdürüyor. Birleşmiş Milletler Güvenlik Konseyi, insani ateşkes için acil toplantı kararı aldı.",
-                icerik_en: "The United Nations called for emergency aid, stating that the humanitarian crisis is deepening in Gaza. Access to basic necessities is becoming increasingly difficult in the region. UN officials announced that hospitals in Gaza are suffering from fuel and medical supply shortages, and clean water sources are about to run out. Thousands of civilians have been forced to leave their homes, and UN schools have been converted into shelters. The World Food Program warned that food stocks in the region will run out within a week. The International Committee of the Red Cross called on the parties to comply with international humanitarian law, while many countries continue diplomatic efforts to open a humanitarian aid corridor. The United Nations Security Council decided to hold an emergency meeting for a humanitarian ceasefire.",
+                icerik_tr: "Birleşmiş Milletler, Gazze'de insani krizin derinleştiğini belirterek acil yardım çağrısında bulundu. Bölgede temel ihtiyaç maddelerine erişim giderek zorlaşıyor. BM yetkilileri, Gazze'deki hastanelerin yakıt ve tıbbi malzeme sıkıntısı çektiğini, temiz su kaynaklarının tükenmek üzere olduğunu açıkladı.",
+                icerik_en: "The United Nations called for emergency aid, stating that the humanitarian crisis is deepening in Gaza. Access to basic necessities is becoming increasingly difficult in the region. UN officials announced that hospitals in Gaza are suffering from fuel and medical supply shortages.",
                 resim: "bbc7.jpg",
                 kategori: "DÜNYA"
             },
-            // Sayfa 9 - Almanya Göç Politikası
             {
                 tr: "Almanya'da Göçmen Politikaları Tartışılıyor: Nitelikli İşgücüne Kolaylık",
                 en: "Immigration Policies Debated in Germany: Facilitation for Skilled Labor",
-                icerik_tr: "Almanya'da yeni göçmen yasası parlamentoda tartışılıyor. Yasa, nitelikli işgücü göçünü kolaylaştırmayı hedefliyor. Muhalefet ise düzenlemenin yetersiz olduğunu savunuyor. Yeni yasa ile üniversite mezunları ve mesleki yeterliliğe sahip kişiler için vize süreçlerinin hızlandırılması, iş arama izninin süresinin uzatılması ve aile birleşiminin kolaylaştırılması planlanıyor. Almanya'da yaşlanan nüfus ve vasıflı işgücü açığı, ülkeyi göç politikalarını yeniden düzenlemeye zorluyor. Almanya İstatistik Dairesi verilerine göre, ülkede 2 milyona yakın iş pozisyonu doldurulamıyor. Özellikle mühendislik, sağlık ve bilişim sektörlerinde büyük eleman sıkıntısı yaşanıyor. Ekonomi Bakanlığı, yeni düzenlemenin yılda 100 bin nitelikli göçmenin Almanya'ya gelmesini sağlayabileceğini öngörüyor.",
-                icerik_en: "Germany's new immigration law is being debated in parliament. The law aims to facilitate skilled labor migration. The opposition argues that the regulation is insufficient. The new law plans to accelerate visa processes for university graduates and people with professional qualifications, extend the duration of job search permits, and facilitate family reunification. Germany's aging population and skilled labor shortage are forcing the country to reorganize its immigration policies. According to German Statistical Office data, nearly 2 million job positions cannot be filled in the country. Especially in engineering, health and IT sectors, there is a great shortage of personnel. The Ministry of Economy predicts that the new regulation could enable 100 thousand qualified immigrants to come to Germany annually.",
+                icerik_tr: "Almanya'da yeni göçmen yasası parlamentoda tartışılıyor. Yasa, nitelikli işgücü göçünü kolaylaştırmayı hedefliyor. Muhalefet ise düzenlemenin yetersiz olduğunu savunuyor. Yeni yasa ile üniversite mezunları ve mesleki yeterliliğe sahip kişiler için vize süreçlerinin hızlandırılması planlanıyor.",
+                icerik_en: "Germany's new immigration law is being debated in parliament. The law aims to facilitate skilled labor migration. The opposition argues that the regulation is insufficient. The new law plans to accelerate visa processes for university graduates.",
                 resim: "bbc8.jpg",
                 kategori: "DÜNYA"
             },
-            // Sayfa 10 - Küresel Enflasyon
             {
                 tr: "Küresel Enflasyon Endişe Yaratıyor: Merkez Bankaları Zor Durumda",
                 en: "Global Inflation Causes Concern: Central Banks in Difficult Position",
-                icerik_tr: "Dünya genelinde artan enflasyon, merkez bankalarını zor durumda bırakıyor. Faiz artırımları ekonomik büyümeyi yavaşlatabilir. Uzmanlar enflasyonla mücadelenin uzun süreceğini belirtiyor. ABD'de enflasyon son 40 yılın zirvesine çıkarken, Avro Bölgesi'nde de rekor seviyeler görülüyor. Tedarik zincirindeki aksamalar, enerji fiyatlarındaki artış ve işgücü piyasasındaki sıkılaşma enflasyonun ana nedenleri olarak gösteriliyor. Merkez bankaları faiz artırımlarına rağmen enflasyonu kontrol altına almakta zorlanıyor. Yüksek enflasyon karşısında en çok dar gelirli vatandaşlar etkilenirken, tasarruf sahipleri de birikimlerinin erimesinden şikayetçi. Uluslararası Para Fonu, küresel ekonominin en zor dönemlerinden birini yaşadığını belirterek, ülkeleri ihtiyatlı politikalara çağırdı.",
-                icerik_en: "Rising inflation worldwide is putting central banks in a difficult position. Interest rate hikes could slow economic growth. Experts say the fight against inflation will take a long time. While inflation in the US has peaked in 40 years, record levels are also seen in the Eurozone. Supply chain disruptions, increases in energy prices and tightening in the labor market are cited as the main causes of inflation. Central banks are struggling to control inflation despite rate hikes. While low-income citizens are most affected by high inflation, savers also complain about the erosion of their savings. The International Monetary Fund stated that the global economy is going through one of the most difficult periods and called on countries to adopt prudent policies.",
+                icerik_tr: "Dünya genelinde artan enflasyon, merkez bankalarını zor durumda bırakıyor. Faiz artırımları ekonomik büyümeyi yavaşlatabilir. Uzmanlar enflasyonla mücadelenin uzun süreceğini belirtiyor. ABD'de enflasyon son 40 yılın zirvesine çıkarken, Avro Bölgesi'nde de rekor seviyeler görülüyor.",
+                icerik_en: "Rising inflation worldwide is putting central banks in a difficult position. Interest rate hikes could slow economic growth. Experts say the fight against inflation will take a long time. Inflation in the US has peaked in 40 years.",
                 resim: "bbc9.jpg",
                 kategori: "EKONOMİ"
             },
-            // Sayfa 11 - Yapay Zeka ve İş Piyasası
             {
                 tr: "Yapay Zeka İş Piyasasını Değiştiriyor: Milyonlarca İş Otomasyona Dönüşecek",
                 en: "AI is Changing the Job Market: Millions of Jobs Will Become Automated",
-                icerik_tr: "Yapay zeka teknolojileri, birçok sektörde iş yapış şeklini değiştiriyor. Uzmanlar, önümüzdeki 10 yılda milyonlarca işin otomasyona dönüşeceğini öngörüyor. Yeni meslekler ortaya çıkıyor. McKinsey Global Institute raporuna göre, 2030 yılına kadar dünya genelinde 375 milyon çalışanın mesleki dönüşüm yaşaması gerekecek. Özellikle veri girişi, muhasebe, müşteri hizmetleri gibi tekrarlayan işlerde yapay zeka kullanımı hızla yaygınlaşıyor. Ancak yapay zeka aynı zamanda yeni iş alanları da yaratıyor: Yapay zeka etik uzmanlığı, veri bilimciliği, otomasyon mühendisliği gibi meslekler ön plana çıkıyor. Eğitim sistemlerinin bu dönüşüme ayak uydurması gerektiğini vurgulayan uzmanlar, yaşam boyu öğrenmenin önemine dikkat çekiyor. Hükümetler, işsiz kalanları yeniden eğitmek için sosyal güvenlik ağlarını güçlendirmeye çalışıyor.",
-                icerik_en: "AI technologies are changing the way business is done in many sectors. Experts predict millions of jobs will become automated in the next 10 years. New professions are emerging. According to the McKinsey Global Institute report, by 2030, 375 million workers worldwide will need to undergo occupational transformation. The use of AI is becoming widespread especially in repetitive jobs such as data entry, accounting, customer service. However, AI is also creating new job fields: professions such as AI ethics specialist, data scientist, automation engineer come to the fore. Emphasizing that education systems need to keep up with this transformation, experts draw attention to the importance of lifelong learning. Governments are trying to strengthen social safety nets to retrain those who become unemployed.",
+                icerik_tr: "Yapay zeka teknolojileri, birçok sektörde iş yapış şeklini değiştiriyor. Uzmanlar, önümüzdeki 10 yılda milyonlarca işin otomasyona dönüşeceğini öngörüyor. McKinsey Global Institute raporuna göre, 2030 yılına kadar dünya genelinde 375 milyon çalışanın mesleki dönüşüm yaşaması gerekecek.",
+                icerik_en: "AI technologies are changing the way business is done in many sectors. Experts predict millions of jobs will become automated in the next 10 years. According to the McKinsey Global Institute report, 375 million workers will need to undergo occupational transformation by 2030.",
                 resim: "bbc10.jpg",
                 kategori: "TEKNOLOJİ"
             },
-            // Sayfa 12 - NASA Artemis Görevi
             {
                 tr: "NASA'dan Ay'a Yeni Görev: 2025'te Kadın Astronot Tarih Yazacak",
                 en: "New Mission to the Moon from NASA: Female Astronaut to Make History in 2025",
-                icerik_tr: "NASA, Artemis programı kapsamında 2025'te Ay'a astronot göndermeye hazırlanıyor. Görevde ilk kez bir kadın astronot Ay yüzeyine adım atacak. Amaç, Mars yolculuğuna hazırlık yapmak. Artemis II görevinde Ay çevresinde uçuş gerçekleştirecek 4 kişilik ekip geçtiğimiz aylarda açıklandı. 2025'te gerçekleşmesi planlanan Artemis III görevinde ise astronotlar Ay'ın güney kutbuna iniş yapacak. Bu bölgede daha önce hiç insan ayak basmadı ve su buzu bulunduğu düşünülüyor. NASA, Ay'da sürdürülebilir bir üs kurmayı ve bu üssü Mars yolculukları için bir üs olarak kullanmayı hedefliyor. Artemis programı kapsamında ayrıca Uluslararası Uzay İstasyonu'nun yerini alacak yeni bir uzay istasyonu olan Gateway'in inşası da planlanıyor. Avrupa, Japonya, Kanada ve Birleşik Arap Emirlikleri uzay ajansları da programa ortak oldu.",
-                icerik_en: "NASA is preparing to send astronauts to the Moon in 2025 as part of the Artemis program. For the first time, a female astronaut will step on the Moon's surface. The goal is to prepare for the journey to Mars. The 4-person crew that will fly around the Moon in the Artemis II mission was announced in recent months. In the Artemis III mission planned for 2025, astronauts will land on the Moon's south pole. No human has ever set foot in this region, and it is thought to contain water ice. NASA aims to establish a sustainable base on the Moon and use this base as a staging post for Mars journeys. Under the Artemis program, construction of Gateway, a new space station that will replace the International Space Station, is also planned. The space agencies of Europe, Japan, Canada and the United Arab Emirates have also joined the program.",
+                icerik_tr: "NASA, Artemis programı kapsamında 2025'te Ay'a astronot göndermeye hazırlanıyor. Görevde ilk kez bir kadın astronot Ay yüzeyine adım atacak. Amaç, Mars yolculuğuna hazırlık yapmak. Artemis II görevinde Ay çevresinde uçuş gerçekleştirecek 4 kişilik ekip geçtiğimiz aylarda açıklandı.",
+                icerik_en: "NASA is preparing to send astronauts to the Moon in 2025 as part of the Artemis program. For the first time, a female astronaut will step on the Moon's surface. The goal is to prepare for the journey to Mars. The 4-person crew for Artemis II was announced recently.",
                 resim: "bbc11.jpg",
                 kategori: "BİLİM"
             },
-            // Sayfa 13 - James Webb Teleskobu
             {
                 tr: "James Webb Teleskobu'ndan Yeni Görüntüler: Evrenin Derinliklerinde Keşif",
                 en: "New Images from James Webb Telescope: Discovery in the Depths of the Universe",
-                icerik_tr: "James Webb Uzay Teleskobu, evrenin derinliklerinden yeni görüntüler gönderdi. Görüntülerde, daha önce hiç görülmemiş galaksiler ve yıldız oluşumları yer alıyor. Bilim insanları büyük heyecan yaşıyor. Teleskop, Büyük Patlama'dan sadece 400 milyon yıl sonrasına ait galaksileri görüntülemeyi başardı. Bu galaksilerin beklenenden çok daha olgun yapıda olması, evrenin erken dönemine dair teorilerin yeniden gözden geçirilmesine neden oldu. Webb'in gönderdiği kızılötesi görüntüler, yıldız oluşum bölgelerinin daha önce hiç olmadığı kadar detaylı incelenmesine olanak tanıyor. Ayrıca teleskop, ötegezegenlerin atmosferlerini analiz ederek, yaşam belirtisi olabilecek gazları tespit etmeye çalışıyor. Bilim insanları, Webb sayesinde önümüzdeki 20 yılda evrene dair bildiklerimizin büyük ölçüde değişeceğini belirtiyor.",
-                icerik_en: "The James Webb Space Telescope has sent new images from the depths of the universe. The images include never-before-seen galaxies and star formations. Scientists are very excited. The telescope succeeded in imaging galaxies dating back to only 400 million years after the Big Bang. The fact that these galaxies are much more mature than expected has led to the revision of theories about the early universe. Webb's infrared images allow star-forming regions to be studied in unprecedented detail. The telescope is also trying to detect gases that may be signs of life by analyzing the atmospheres of exoplanets. Scientists state that thanks to Webb, what we know about the universe will change greatly in the next 20 years.",
+                icerik_tr: "James Webb Uzay Teleskobu, evrenin derinliklerinden yeni görüntüler gönderdi. Görüntülerde, daha önce hiç görülmemiş galaksiler ve yıldız oluşumları yer alıyor. Teleskop, Büyük Patlama'dan sadece 400 milyon yıl sonrasına ait galaksileri görüntülemeyi başardı.",
+                icerik_en: "The James Webb Space Telescope has sent new images from the depths of the universe. The images include never-before-seen galaxies and star formations. The telescope succeeded in imaging galaxies dating back to only 400 million years after the Big Bang.",
                 resim: "bbc12.jpg",
                 kategori: "BİLİM"
             },
-            // Sayfa 14 - Londra'da Sanat Akımı
             {
                 tr: "Londra'da Yeni Bir Sanat Akımı: Dijital ve Gelenekselin Buluşması",
                 en: "New Art Movement in London: Meeting of Digital and Traditional",
-                icerik_tr: "Londra'da genç sanatçıların öncülük ettiği yeni bir sanat akımı ilgi çekiyor. Dijital sanat ve geleneksel tekniklerin harmanlandığı eserler, büyük koleksiyonerler tarafından satın alınıyor. 'Neo-Dijitalizm' olarak adlandırılan akım, tuval üzerine yağlıboya resimlerin üzerine projeksiyonla hareketli görüntüler yansıtılması, artırılmış gerçeklikle izleyicinin eserle etkileşime girmesi gibi teknikler kullanıyor. Londra'nın önde gelen galerilerinden Saatchi Gallery'de açılan sergi, bir haftada 50 bin ziyaretçiyi ağırladı. Sanat eleştirmenleri, bu akımın dijital çağda sanatın geleceğine dair önemli ipuçları verdiğini belirtiyor. Genç sanatçılar, eserlerini NFT olarak da satışa sunuyor. Geçen yıl bir İngiliz sanatçının dijital eseri 69 milyon dolara satılarak rekor kırmıştı.",
-                icerik_en: "A new art movement led by young artists in London is attracting attention. Works that blend digital art and traditional techniques are being purchased by major collectors. The movement, called 'Neo-Digitalism', uses techniques such as projecting moving images onto oil paintings on canvas and allowing the viewer to interact with the work through augmented reality. An exhibition opened at one of London's leading galleries, Saatchi Gallery, hosted 50 thousand visitors in one week. Art critics state that this movement gives important clues about the future of art in the digital age. Young artists are also offering their works for sale as NFTs. Last year, a digital work by a British artist sold for $69 million, breaking a record.",
+                icerik_tr: "Londra'da genç sanatçıların öncülük ettiği yeni bir sanat akımı ilgi çekiyor. Dijital sanat ve geleneksel tekniklerin harmanlandığı eserler, büyük koleksiyonerler tarafından satın alınıyor. 'Neo-Dijitalizm' olarak adlandırılan akım, sanat dünyasında büyük yankı uyandırdı.",
+                icerik_en: "A new art movement led by young artists in London is attracting attention. Works that blend digital art and traditional techniques are being purchased by major collectors. The movement called 'Neo-Digitalism' has caused a great stir in the art world.",
                 resim: "bbc13.jpg",
                 kategori: "KÜLTÜR"
             },
-            // Sayfa 15 - Edinburgh Fringe Festivali
             {
                 tr: "Edinburgh Fringe Festivali Başladı: 50 Bin Gösteri Sanatseverlerle Buluşuyor",
                 en: "Edinburgh Fringe Festival Begins: 50 Thousand Shows Meet Art Lovers",
-                icerik_tr: "Dünyanın en büyük sanat festivali Edinburgh Fringe, kapılarını açtı. 3 hafta sürecek festivalde 50 binin üzerinde gösteri yapılacak. Yüz binlerce sanatsever şehre akın etti. İskoçya'nın başkenti Edinburgh'da düzenlenen festival, tiyatro, dans, komedi, müzik ve sokak sanatları gibi birçok disiplinde binlerce etkinliğe ev sahipliği yapıyor. Festival kapsamında şehrin dört bir yanında kurulan sahnelerde profesyonel sanatçıların yanı sıra amatör gruplar da performans sergiliyor. Bu yıl festivalde Türkiye'den de 10 tiyatro topluluğu yer alıyor. Festivalin en çok ilgi çeken etkinlikleri arasında sokak gösterileri ve alternatif mekanlardaki performanslar bulunuyor. Edinburgh Fringe, her yıl milyonlarca ziyaretçiye ev sahipliği yapıyor ve şehir ekonomisine yüz milyonlarca sterlin katkı sağlıyor.",
-                icerik_en: "The world's largest arts festival, Edinburgh Fringe, has opened its doors. More than 50,000 performances will take place during the 3-week festival. Hundreds of thousands of art lovers have flocked to the city. The festival, held in Scotland's capital Edinburgh, hosts thousands of events in many disciplines such as theater, dance, comedy, music and street arts. Professional artists as well as amateur groups perform on stages set up all over the city as part of the festival. This year, 10 theater groups from Turkey are also taking part in the festival. The most popular events of the festival include street performances and performances in alternative venues. Edinburgh Fringe hosts millions of visitors every year and contributes hundreds of millions of pounds to the city economy.",
+                icerik_tr: "Dünyanın en büyük sanat festivali Edinburgh Fringe, kapılarını açtı. 3 hafta sürecek festivalde 50 binin üzerinde gösteri yapılacak. Yüz binlerce sanatsever şehre akın etti. Festival, tiyatro, dans, komedi, müzik ve sokak sanatları gibi birçok disiplinde etkinliklere ev sahipliği yapıyor.",
+                icerik_en: "The world's largest arts festival, Edinburgh Fringe, has opened its doors. More than 50,000 performances will take place during the 3-week festival. Hundreds of thousands of art lovers have flocked to the city. The festival hosts events in many disciplines.",
                 resim: "bbc14.jpg",
                 kategori: "KÜLTÜR"
             },
-            // Sayfa 16 - Premier Lig
             {
                 tr: "Premier Lig'de Yeni Sezon Heyecanı: Şampiyonluk Yarışı Nefes Kesecek",
                 en: "New Season Excitement in Premier League: Championship Race Will Be Thrilling",
-                icerik_tr: "İngiltere Premier Lig'de yeni sezon heyecanı başlıyor. Şampiyonluk mücadelesi bu yıl da nefes kesecek. Transfer döneminde yapılan büyük harcamalar dikkat çekiyor. Manchester City, Arsenal, Liverpool ve Chelsea gibi dev takımların kadrolarını güçlendirmesi, şampiyonluk yarışını daha da çekişmeli hale getirdi. Yayın haklarından elde edilen gelirlerin artmasıyla birlikte, Premier Lig takımları transfer döneminde toplam 2.5 milyar sterlin harcadı. Bu rakam, diğer Avrupa liglerinin toplam harcamasından daha fazla. Ligde bu sezon ayrıca yeni bir teknoloji deneniyor: Yarı otomatik ofsayt sistemi. Bu sistem, ofsayt kararlarının daha hızlı ve doğru verilmesini sağlayacak. Teknoloji, Dünya Kupası'nda başarıyla kullanılmıştı.",
-                icerik_en: "The excitement of the new season begins in the English Premier League. The championship race will be thrilling this year as well. Big spending during the transfer period draws attention. The strengthening of squads by giant teams such as Manchester City, Arsenal, Liverpool and Chelsea has made the championship race even more competitive. With the increase in revenues from broadcasting rights, Premier League teams spent a total of £2.5 billion during the transfer period. This figure is more than the total spending of other European leagues. A new technology is also being tested in the league this season: the semi-automated offside system. This system will enable faster and more accurate offside decisions. The technology was used successfully in the World Cup.",
+                icerik_tr: "İngiltere Premier Lig'de yeni sezon heyecanı başlıyor. Şampiyonluk mücadelesi bu yıl da nefes kesecek. Transfer döneminde yapılan büyük harcamalar dikkat çekiyor. Manchester City, Arsenal, Liverpool ve Chelsea gibi dev takımlar kadrolarını güçlendirdi.",
+                icerik_en: "The excitement of the new season begins in the English Premier League. The championship race will be thrilling this year as well. Big spending during the transfer period draws attention. Giant teams have strengthened their squads.",
                 resim: "bbc15.jpg",
                 kategori: "SPOR"
             }
         ];
 
-        // ========== GAZETE SAYFALARI (Her sayfada 1 haber) ==========
+        // ========== GAZETE SAYFALARI ==========
         const pages = [];
         pages.push({ page: 1, kapak: true });
         
